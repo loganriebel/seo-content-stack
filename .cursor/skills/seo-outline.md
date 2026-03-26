@@ -77,6 +77,7 @@ For each section, write 2-4 sentences describing:
 - What this section covers and why it matters
 - The key point or argument
 - Any specific data, examples, or sources to include
+- Any external sources to cite (from the brief's Key Sources) and where in the section to place the link
 - Approximate word count for this section
 
 ## Outline Template
@@ -122,6 +123,7 @@ target_word_count: [number]
 [What this section covers and why. Key argument or point.]
 - **Keywords**: [which keywords to weave in]
 - **Internal links**: [slug to link, context for the link]
+- **Sources to cite**: [source name](URL) — [how to use it]
 - **Word count**: ~[number]
 
 ### H3: [Subsection Title] (if applicable)

@@ -135,6 +135,15 @@ status: "complete"
 4. [Must-cover point and why]
 5. [Must-cover point and why]
 
+## Key Sources
+
+Sources from the research brief that should be cited in the final post. Map each to the point it supports so the writer knows where to place the link.
+
+| Source | URL | Supports point | How to use |
+|--------|-----|----------------|------------|
+| [Title] | [URL] | [Which key point above] | [Cite this stat / reference this finding / link as further reading] |
+| ... | ... | ... | ... |
+
 ## What NOT to Cover
 
 - [Topic to explicitly exclude and why — keeps scope tight]

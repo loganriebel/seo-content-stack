@@ -62,14 +62,17 @@ Read the draft against the Mako Metrics voice:
 
 **Fix**: smooth out voice inconsistencies. The post should read like one person wrote it in one sitting.
 
-### Pass 3: Factual Accuracy
+### Pass 3: Factual Accuracy and Source Verification
 
-- **Flag unsourced statistics.** If the draft claims "73% of marketers say X," it needs a source or should be softened to "most marketers I've talked to say X."
+- **Fix unsourced statistics.** If the draft claims "73% of marketers say X," it needs an inline link to the source. If no source can be found, reframe as opinion: "most marketers I've talked to say X." Do not leave unlinked statistics in the final draft.
+- **Verify cited sources say what the draft claims.** Open each source link (or search for the page) and confirm the draft's characterization is accurate. Flag any misrepresentations.
+- **Check that source links are functional.** Verify inline source links are not 404 or redirecting to unrelated pages via web search if uncertain.
+- **Check source quality.** Ensure external links point to reputable, current sources — not outdated pages, low-authority sites, or content farms. Prefer primary sources (official reports, platform documentation, peer-reviewed research) over secondary coverage.
 - **Check named tools and features.** If the draft references a specific feature of Meta Ads Manager, Ahrefs, or Google Ads, verify it's accurate and current via web search if uncertain.
 - **Check outdated information.** Platform UIs change constantly. If the draft describes a specific workflow, flag anything that might be stale.
 - **Check logical consistency.** Do the numbers add up? Does the advice in section 3 contradict section 5?
 
-**Fix**: correct factual errors. Soften unsourced claims. Add notes for anything that needs user verification.
+**Fix**: correct factual errors. Add source links to unsourced claims or reframe as opinion. Replace broken or low-quality source links. Add notes for anything that needs user verification.
 
 ### Pass 4: Grammar, Clarity, and Flow
 
@@ -118,6 +121,11 @@ After all passes, update the draft:
 ### Factual Flags
 - [List any claims that need user verification]
 - [List any corrections made]
+
+### Source Verification
+- [X] source links checked
+- Broken or replaced links: [list any]
+- Unsourced claims fixed: [list any stats that got a source added or were reframed as opinion]
 
 ### Clarity Improvements
 - [X] sentences simplified

@@ -33,6 +33,7 @@ Use web search to analyze the current search landscape for the seed keyword and 
 2. **Search 2-3 variations.** Long-tail variants, question-format queries ("how to [keyword]", "best [keyword] for [use case]").
 3. **Identify content gaps.** What do the top results cover? What do they miss? Where are they thin, outdated, or wrong?
 4. **Note SERP features.** Featured snippets, People Also Ask boxes, video carousels, knowledge panels. These signal what Google considers the intent.
+5. **Save citable sources.** For any page that contains data, statistics, original research, or claims worth referencing, record the title, URL, and what's citable in the Sources Collected table.
 
 ### Step 3: Social listening
 
@@ -55,6 +56,7 @@ For each platform, extract:
 - 3-5 real quotes or paraphrased pain points
 - Common sub-questions people ask
 - Language they use (this informs keyword targeting and writing voice)
+- Any linked sources, studies, or data points worth citing — add them to the Sources Collected table
 
 ### Step 4: Google Search Console signals (if provided)
 
@@ -73,6 +75,7 @@ For the top 3-5 ranking pages:
 - When were they last updated?
 - What do their comments/engagement look like (if visible)?
 - What would make a new piece better — more depth, fresher data, different format, better examples?
+- Do they cite original data or studies? If so, record those primary sources in the Sources Collected table — they may be more valuable to cite than the competitor page itself.
 
 ### Step 6: Synthesize into recommended angles
 
@@ -163,6 +166,13 @@ status: "complete"
 - **Why it wins**: ...
 - **Difficulty**: low / medium / high
 - **Format**: ...
+
+## Sources Collected
+
+| Source | URL | Type | Notes |
+|--------|-----|------|-------|
+| [Title] | [URL] | study / tool doc / industry report / blog post / official announcement | [What's citable — specific stat, claim, or data point] |
+| ... | ... | ... | ... |
 
 ## Raw Notes
 [Any additional observations, links, or data points worth preserving]

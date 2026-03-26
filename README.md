@@ -36,12 +36,14 @@ Each skill activates a different cognitive mode (researcher, strategist, writer,
 
 **SEO and editorial review are separate.** SEO review checks discoverability mechanics. Editorial review checks quality and voice. Combining them causes one to compromise the other.
 
+**Source citation built in.** The pipeline tracks sources from research through writing and verifies them during editorial review. Statistics and claims link to their sources inline — no unsourced "73% of marketers" claims.
+
 **Topic clustering built in.** The `content-index.json` tracks published content, pillar topics, and internal linking — so each new post is placed within a broader content strategy.
 
 ## Setup
 
 1. Clone this repo into your project (or fork it).
-2. Edit `seo-stack-config.yaml` with your site's details (domain, author, deploy settings).
+2. Edit `seo-stack-config.yaml` with your site's details: domain, author, deploy settings, site header/footer HTML, and marketing tags (Google Tag Manager, analytics pixels, etc.).
 3. Edit `.cursor/rules/seo-brand-voice.mdc` with your brand's voice and tone.
 4. Start creating content: tell Cursor "start a new post about [topic]" and the orchestrator skill takes over.
 
@@ -77,6 +79,8 @@ This was built for Mako Metrics but designed to generalize. To adapt for your si
 2. **`.cursor/rules/seo-brand-voice.mdc`** — rewrite with your brand's voice, audience, and tone.
 3. **Skill opening lines** — each skill says "You are a ___ for Mako Metrics." Change to your brand.
 4. **CTA references** — skills reference `/free-tool.html`. Change to your CTA target.
+5. **`site_html`** — paste your site's header and footer HTML so blog pages match your site chrome.
+6. **`marketing_tags`** — add your GTM container ID and any analytics/tracking scripts (GA4, Meta Pixel, HotJar, etc.).
 
 ## Requirements
 

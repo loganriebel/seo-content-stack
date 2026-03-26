@@ -48,6 +48,20 @@ If `generate_html.py` does not exist yet, fall back to manual HTML generation:
 3. Wrap in the template with all meta tags.
 4. Save to both `blog/[slug].html` and `deploy/blog/[slug].html`.
 
+#### Injecting site chrome and marketing tags
+
+Read `seo-stack-config.yaml` for `site_html` and `marketing_tags`. When generating or templating the HTML, inject them in this order:
+
+1. If `marketing_tags.gtm_id` is set, inject the standard GTM script snippet in `<head>` (immediately after `<head>`).
+2. Inject any `marketing_tags.head_scripts` into `<head>` before `</head>`.
+3. If `marketing_tags.gtm_id` is set, inject the GTM `<noscript>` fallback immediately after the opening `<body>` tag.
+4. Inject `site_html.header` after `<body>` (and after the GTM noscript tag if present).
+5. [Page content goes here]
+6. Inject `site_html.footer` after the page content.
+7. Inject any `marketing_tags.body_scripts` before `</body>`.
+
+Skip any of these that are empty strings in config.
+
 ### Step 4: Validate HTML tags
 
 Read the generated HTML file and verify every item on this checklist:
@@ -111,6 +125,14 @@ python seo_tools/validate_schema.py blog/[slug].html
 - [ ] All internal links use relative paths
 - [ ] Anchor text is descriptive
 - [ ] No broken anchor links in the Table of Contents
+
+#### Site Chrome and Tracking (from config)
+- [ ] Site header HTML is present (if `site_html.header` is configured)
+- [ ] Site footer HTML is present (if `site_html.footer` is configured)
+- [ ] GTM script is present in `<head>` (if `marketing_tags.gtm_id` is configured)
+- [ ] GTM `<noscript>` fallback is present after `<body>` (if `marketing_tags.gtm_id` is configured)
+- [ ] Additional `head_scripts` are present in `<head>` (if configured)
+- [ ] Additional `body_scripts` are present before `</body>` (if configured)
 
 ### Step 5: Generate validation report
 

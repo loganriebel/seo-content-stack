@@ -68,6 +68,13 @@ Evaluate each criterion below. For each, record: PASS, FAIL, or WARN (technicall
 - [ ] Links have descriptive anchor text (not "click here" or "read more")
 - [ ] Links are contextually relevant to the surrounding text
 
+#### External Source Links
+- [ ] Statistics and data claims include inline source links
+- [ ] Source links use descriptive anchor text (not bare URLs or "source")
+- [ ] Sources are reputable and current (not content farms or outdated pages)
+- [ ] No excessive outbound links (aim for 3-10 depending on post length)
+- [ ] Links are not all going to the same external domain
+
 #### Content Structure
 - [ ] Quick Summary Box present
 - [ ] Table of Contents present with working anchor targets
@@ -107,6 +114,7 @@ Create a scorecard summarizing results:
 | Keyword Placement | PASS/FAIL/WARN | [details] |
 | Content Length | PASS/FAIL/WARN | [details] |
 | Internal Links | PASS/FAIL/WARN | [details] |
+| External Source Links | PASS/FAIL/WARN | [details] |
 | Content Structure | PASS/FAIL/WARN | [details] |
 | Frontmatter | PASS/FAIL/WARN | [details] |
 
@@ -114,6 +122,7 @@ Create a scorecard summarizing results:
 - **Word count**: [number] / [target]
 - **H2 count**: [number]
 - **Internal links**: [number]
+- **External source links**: [number]
 - **Primary keyword occurrences**: [number] (density: [X]%)
 - **Readability**: [assessment]
 

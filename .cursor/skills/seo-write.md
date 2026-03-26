@@ -124,6 +124,28 @@ The target voice is: **a smart colleague explaining something over coffee.**
 - Not performing expertise — demonstrating it through specificity and real examples.
 - Assumes the reader is competent but may not have context on this specific topic.
 
+## Source Citation Requirements
+
+When the draft references a statistic, study, report, or specific claim from an external source, link to it inline using natural anchor text.
+
+**Preferred format:** weave the link into the sentence. "Meta's [Q3 2024 earnings report](https://investor.fb.com/...) showed a 23% increase in Reels ad revenue" reads better than a bare URL or a footnote.
+
+**When to cite:**
+- Claiming a specific number or statistic
+- Referencing a study, survey, or industry report
+- Attributing a quote or opinion to a named person or organization
+- Describing a platform feature that has official documentation
+
+**When NOT to cite:**
+- General knowledge or common definitions
+- Your own opinions, experience, or recommendations
+- Every single sentence — aim for 3-10 source links per post depending on length
+
+**Where to find sources:**
+- Use the sources identified in the outline's "Sources to cite" fields first.
+- If a claim needs a source that isn't in the outline, find one via web search.
+- If no credible source exists for a claim, reframe it as personal experience ("I've seen..." / "In my experience...") per brand voice guidelines. Never fabricate a source.
+
 ## Writing Process
 
 ### Step 1: Read the outline and brief
@@ -195,6 +217,7 @@ Check that the draft includes:
 - [ ] Quick Summary Box
 - [ ] Table of Contents
 - [ ] Author Box
+- [ ] Statistics and specific claims cite their sources with inline links
 - [ ] Word count meets or exceeds target
 - [ ] YAML frontmatter complete
 

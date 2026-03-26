@@ -7,6 +7,26 @@ site:
   blog_base_url: "/blog/"
   free_tool_url: "/free-tool.html"
 
+site_html:
+  # Paste your site header HTML here (navigation bar, logo, etc.)
+  # This gets injected at the top of every generated blog page.
+  header: ""
+  # Paste your site footer HTML here (footer links, copyright, etc.)
+  # This gets injected at the bottom of every generated blog page.
+  footer: ""
+
+marketing_tags:
+  # Google Tag Manager container ID (e.g., "GTM-XXXXXXX")
+  # Leave empty if not using GTM.
+  gtm_id: ""
+  # Additional head tags — paste any tracking/analytics script tags here.
+  # These get injected into <head> on every generated blog page.
+  # Examples: Google Analytics 4, Meta Pixel, HotJar, etc.
+  head_scripts: ""
+  # Additional body tags — paste any tracking snippets that go at end of <body>.
+  # Example: GTM noscript fallback.
+  body_scripts: ""
+
 author:
   name: "Mako Metrics"
   url: "https://makometrics.com"
