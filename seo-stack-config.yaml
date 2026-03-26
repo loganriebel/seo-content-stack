@@ -1,0 +1,66 @@
+# SEO Content Stack Configuration
+# Site-specific settings. When generalizing to other sites, this is the only file that changes.
+
+site:
+  name: "Mako Metrics"
+  domain: "makometrics.com"
+  blog_base_url: "/blog/"
+  free_tool_url: "/free-tool.html"
+
+author:
+  name: "Mako Metrics"
+  url: "https://makometrics.com"
+  logo: "https://makometrics.com/images/logo.png"
+
+brand_voice:
+  tone: "direct, data-driven, conversational-professional"
+  audience: "ecommerce marketers, paid media managers, marketing analysts"
+  topics:
+    - "Facebook/Meta ads"
+    - "ecommerce marketing"
+    - "competitor analysis"
+    - "paid media performance"
+    - "marketing analytics"
+
+content_defaults:
+  min_word_count: 2000
+  meta_title_max_chars: 60
+  meta_description_min_chars: 150
+  meta_description_max_chars: 160
+  min_h2_count: 3
+  max_h2_count: 7
+  target_internal_links: 3
+  categories:
+    - "strategy"
+    - "creative"
+    - "research"
+    - "targeting"
+    - "budget"
+    - "optimization"
+
+deploy:
+  provider: "digitalocean"
+  # Set these to your actual values before first deploy
+  # method: "spaces" | "rsync" | "app-platform"
+  method: "spaces"
+  # bucket: "your-do-spaces-bucket"
+  # region: "nyc3"
+  # deploy_path: "/blog/"
+
+paths:
+  research: "research/"
+  briefs: "briefs/"
+  outlines: "outlines/"
+  drafts: "drafts/"
+  images: "assets/images/blog/"
+  html_output: "blog/"
+  deploy_output: "deploy/blog/"
+  qa_reports: "qa-reports/"
+  templates: "seo_tools/templates/"
+  content_index: "content-index.json"
+
+seo_tools:
+  generate_html: "seo_tools/generate_html.py"
+  publish: "seo_tools/publish.py"
+  validate_schema: "seo_tools/validate_schema.py"
+  blog_template: "seo_tools/templates/blog_post.jinja2"

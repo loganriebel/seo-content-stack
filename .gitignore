@@ -1,0 +1,15 @@
+# IDE and system
+.cursor/plans/
+agent-transcripts/
+agent-tools/
+mcps/
+terminals/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.env
