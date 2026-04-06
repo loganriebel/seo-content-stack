@@ -1,46 +1,40 @@
 # SEO Content Stack Configuration
-# Site-specific settings. When generalizing to other sites, this is the only file that changes.
+# ─────────────────────────────────────────────────────────────────────────────
+# SETUP REQUIRED: Replace every value marked ← with your own information.
+# The pipeline agent will detect placeholder values on first run and walk
+# you through filling these in automatically.
+# ─────────────────────────────────────────────────────────────────────────────
 
 site:
-  name: "Mako Metrics"
-  domain: "makometrics.com"
+  name: "YOUR_SITE_NAME"          # ← e.g. "Acme Corp"
+  domain: "yourdomain.com"        # ← e.g. "acme.com" (no https://, no trailing slash)
   blog_base_url: "/blog/"
-  free_tool_url: "/free-tool.html"
+  free_tool_url: "/your-cta-page" # ← your primary CTA page (e.g. "/free-trial", "/pricing")
 
 site_html:
   # Paste your site header HTML here (navigation bar, logo, etc.)
-  # This gets injected at the top of every generated blog page.
+  # Leave blank to omit from generated pages.
   header: ""
-  # Paste your site footer HTML here (footer links, copyright, etc.)
-  # This gets injected at the bottom of every generated blog page.
   footer: ""
 
 marketing_tags:
-  # Google Tag Manager container ID (e.g., "GTM-XXXXXXX")
-  # Leave empty if not using GTM.
-  gtm_id: ""
-  # Additional head tags — paste any tracking/analytics script tags here.
-  # These get injected into <head> on every generated blog page.
-  # Examples: Google Analytics 4, Meta Pixel, HotJar, etc.
-  head_scripts: ""
-  # Additional body tags — paste any tracking snippets that go at end of <body>.
-  # Example: GTM noscript fallback.
-  body_scripts: ""
+  gtm_id: ""         # ← Your GTM container ID (e.g. "GTM-XXXXXXX"), or leave blank to skip
+  head_scripts: ""   # Additional <script>/<link> tags for <head>
+  body_scripts: ""   # Additional scripts before </body>
 
 author:
-  name: "Mako Metrics"
-  url: "https://makometrics.com"
-  logo: "https://makometrics.com/images/logo.png"
+  name: "YOUR_AUTHOR_NAME"                       # ← e.g. "Acme Corp" or "Jane Smith"
+  url: "https://yourdomain.com"                  # ← your site URL
+  logo: "https://yourdomain.com/images/logo.png" # ← absolute URL to your logo
 
 brand_voice:
-  tone: "direct, data-driven, conversational-professional"
-  audience: "ecommerce marketers, paid media managers, marketing analysts"
+  # Describe your tone and audience — used in writing and editorial stage prompts.
+  tone: "YOUR_TONE"         # ← e.g. "direct, data-driven, conversational-professional"
+  audience: "YOUR_AUDIENCE" # ← e.g. "marketing managers at B2B SaaS companies (50-500 employees)"
   topics:
-    - "Facebook/Meta ads"
-    - "ecommerce marketing"
-    - "competitor analysis"
-    - "paid media performance"
-    - "marketing analytics"
+    - "YOUR_PRIMARY_TOPIC"  # ← e.g. "Facebook/Meta ads"
+    - "YOUR_TOPIC_2"        # ← add as many as relevant, delete unused lines
+    - "YOUR_TOPIC_3"
 
 content_defaults:
   min_word_count: 2000
@@ -51,6 +45,7 @@ content_defaults:
   max_h2_count: 7
   target_internal_links: 3
   categories:
+    # Customize to match your content taxonomy
     - "strategy"
     - "creative"
     - "research"
@@ -59,28 +54,33 @@ content_defaults:
     - "optimization"
 
 deploy:
-  provider: "digitalocean"
-  # Set these to your actual values before first deploy
-  # method: "spaces" | "rsync" | "app-platform"
-  method: "spaces"
-  # bucket: "your-do-spaces-bucket"
-  # region: "nyc3"
-  # deploy_path: "/blog/"
+  provider: "YOUR_PROVIDER" # ← e.g. "digitalocean", "netlify", "vercel", "other"
+  method: "github"          # ← "github" (push triggers deploy) or "manual"
+  website_root: ".."
+  branch: "master"          # ← "master" or "main"
+  serve_from: "deploy/"     # ← directory your host serves from
 
 paths:
+  # Pipeline artifacts (stay inside .seo-stack/)
   research: "research/"
   briefs: "briefs/"
   outlines: "outlines/"
-  drafts: "drafts/"
-  images: "assets/images/blog/"
-  html_output: "blog/"
-  deploy_output: "deploy/blog/"
   qa_reports: "qa-reports/"
-  templates: "seo_tools/templates/"
   content_index: "content-index.json"
 
+  # Draft source of truth — Stage 4 writes here so Python build tools can find it
+  drafts: "../seo/drafts/"
+
+  # Images go directly into the website images dir
+  images: "../images/blog/"
+
+  # Python build tools output paths
+  html_output: "../blog/"          # intermediate HTML (blog/slug.html)
+  deploy_output: "../deploy/blog/" # deploy artifact (deploy/blog/<slug>/index.html)
+
 seo_tools:
-  generate_html: "seo_tools/generate_html.py"
-  publish: "seo_tools/publish.py"
-  validate_schema: "seo_tools/validate_schema.py"
-  blog_template: "seo_tools/templates/blog_post.jinja2"
+  generate_html: "../seo/seo_tools/generate_html.py"
+  publish: "../seo/seo_tools/publish.py"
+  validate_schema: "../seo/seo_tools/validate_schema.py"
+  sync_deploy: "../seo/seo_tools/sync_deploy.py"
+  blog_template: "../seo/seo_tools/templates/blog_post.jinja2"

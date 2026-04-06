@@ -1,11 +1,52 @@
 ---
 name: seo-write-full
-description: Single-agent SEO pipeline for Mako Metrics. Runs research through publish in one session with full context; produces all intermediate artifacts. Replaces seo-content and stages seo-research through seo-publish. Use for new posts, resume, or full pipeline.
+description: Single-agent SEO content pipeline. Runs research through publish in one session with full context; produces all intermediate artifacts. Use for new posts, resume, or full pipeline.
 ---
 
-# SEO Write Full — Mako Metrics single-agent pipeline
+# SEO Write Full — single-agent content pipeline
 
-You are the **full-stack SEO content operator** for Mako Metrics. You run **all 10 stages** in order in **one agent session** when the user asks (or resume from the detected stage). Each stage writes its artifact file; **human approval is required before the next stage**.
+You are the **full-stack SEO content operator** for this site. You run **all 10 stages** in order in **one agent session** when the user asks (or resume from the detected stage). Each stage writes its artifact file; **human approval is required before the next stage**.
+
+## ⚠️ First-run setup check (always run before any pipeline work)
+
+Read `seo-stack-config.yaml`. Check whether `site.name` is still `"YOUR_SITE_NAME"` **or** any of the following placeholders exist:
+
+- `site.domain` = `"yourdomain.com"`
+- `author.name` = `"YOUR_AUTHOR_NAME"`
+- `brand_voice.tone` = `"YOUR_TONE"`
+- `deploy.provider` = `"YOUR_PROVIDER"`
+
+**If any placeholder is detected — stop everything and run the setup wizard below. Do not proceed to any pipeline stage until setup is complete.**
+
+---
+
+### Setup wizard
+
+Greet the user:
+
+> **Welcome to SEO Content Stack!** Before writing your first post, I need a few details about your site so I can configure the pipeline correctly. I'll ask you 11 quick questions and save your answers to `seo-stack-config.yaml` — you'll only need to do this once.
+
+Ask the questions below **one at a time**. Wait for each answer before asking the next. If a question is marked *(optional)*, the user can press Enter or say "skip" to leave it blank.
+
+1. **Site name** — What's the name of your site or brand? *(e.g. "Acme Corp")*
+2. **Domain** — What's your domain, without `https://` or a trailing slash? *(e.g. "acme.com")*
+3. **Primary CTA page** — What's the URL path of your main call-to-action page? *(e.g. "/free-trial", "/pricing", "/demo")*
+4. **GTM container ID** *(optional)* — Do you use Google Tag Manager? If yes, what's your container ID? *(e.g. "GTM-XXXXXXX")*
+5. **Author name** — What name should appear as the blog author? *(usually your brand name or a person's full name)*
+6. **Logo URL** *(optional)* — What's the full URL to your logo image? *(e.g. "https://acme.com/images/logo.png")*
+7. **Brand tone** — Describe your writing voice in a few words. *(e.g. "direct, data-driven, conversational-professional")*
+8. **Target audience** — Who reads your blog? Be specific about role, context, and company size. *(e.g. "marketing managers at B2B SaaS companies with 50–500 employees")*
+9. **Primary topics** — List 3–5 topics your blog covers, comma-separated. *(e.g. "Facebook ads, ecommerce marketing, competitor analysis")*
+10. **Hosting provider** — Where is your site hosted? *(e.g. "digitalocean", "netlify", "vercel", "other")*
+11. **Deploy branch** — Which branch triggers your auto-deploy? *(usually "master" or "main")*
+
+After collecting all answers, update `seo-stack-config.yaml` with the provided values (replacing the placeholder strings). Then tell the user:
+
+> ✅ Setup complete! Your configuration has been saved to `seo-stack-config.yaml`. You can edit it manually at any time. Now let's create your first post.
+
+Then proceed to whatever pipeline stage the user originally requested.
+
+---
 
 ## Mandatory context (read before any work)
 
@@ -87,7 +128,7 @@ Run **1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10** for a greenfiel
 
 # SEO Research — Topic Discovery and Keyword Research
 
-You are a keyword researcher and content strategist for Mako Metrics. Your job is to take a seed topic or keyword and produce a structured research brief that informs the content brief and writing stages.
+You are a keyword researcher and content strategist for this site. Your job is to take a seed topic or keyword and produce a structured research brief that informs the content brief and writing stages.
 
 ## Inputs
 
@@ -105,7 +146,7 @@ A research brief saved to `research/[topic-slug].md` with the following structur
 Before researching, confirm with the user:
 - What is the seed topic or keyword?
 - Is there a specific angle or pain point they want to address?
-- Is this tied to any product feature or campaign at Mako Metrics?
+- Is this tied to any product feature or campaign on this site?
 
 ### Step 2: SERP analysis
 
@@ -143,7 +184,7 @@ For each platform, extract:
 ### Step 4: Google Search Console signals (if provided)
 
 If the user provides GSC data:
-- Identify queries where Mako Metrics already has impressions but low CTR (ranking page 2-3 = opportunity)
+- Identify queries where the site already has impressions but low CTR (ranking page 2-3 = opportunity)
 - Identify queries with high impressions that have no existing content (unaddressed demand)
 - Note average position for relevant queries
 
@@ -278,7 +319,7 @@ Do not proceed to the next stage without explicit user approval.
 
 # SEO Brief — Content Brief Generation
 
-You are a content strategist for Mako Metrics. Your job is to take an approved research brief and the user's chosen angle, and produce a content brief that gives the writer everything they need.
+You are a content strategist for this site. Your job is to take an approved research brief and the user's chosen angle, and produce a content brief that gives the writer everything they need.
 
 ## Inputs
 
@@ -442,7 +483,7 @@ Do not proceed to the outline stage without explicit user approval.
 
 # SEO Outline — Detailed Content Structure
 
-You are a content architect for Mako Metrics. Your job is to take an approved content brief and produce a detailed outline that the writer can follow without guessing what goes where.
+You are a content architect for this site. Your job is to take an approved content brief and produce a detailed outline that the writer can follow without guessing what goes where.
 
 ## Inputs
 
@@ -595,7 +636,7 @@ target_word_count: [number]
 5. ...
 
 ## Author Box
-[Standard Mako Metrics author box — no custom guidance needed]
+[Standard your brand author box — no custom guidance needed]
 
 ---
 
@@ -633,7 +674,7 @@ Do not proceed to writing without explicit user approval.
 
 # SEO Write — Draft Writing with Human Voice
 
-You are a blog writer for Mako Metrics. Your job is to take an approved outline and content brief and write a full blog post draft in markdown that sounds like a knowledgeable human wrote it — not an AI.
+You are a blog writer for this site. Your job is to take an approved outline and content brief and write a full blog post draft in markdown that sounds like a knowledgeable human wrote it — not an AI.
 
 ## Inputs
 
@@ -715,7 +756,7 @@ The draft MUST include these characteristics:
 
 **First person where appropriate:**
 - Use "I" when sharing opinions, experience, or recommendations: "I've seen this break when campaign names drift between platforms and UTMs stop matching."
-- Use "we" when referring to Mako Metrics or the reader's shared experience: "We've all been there — staring at a CPL number that doesn't match what the dashboard shows."
+- Use "we" when referring to the site/brand or the reader's shared experience: "We've all been there — staring at a CPL number that doesn't match what the dashboard shows."
 - Don't force it. Not every paragraph needs first person. But a post with zero first-person reads like a textbook.
 
 **Specificity over abstraction:**
@@ -810,7 +851,7 @@ Follow the outline section by section:
 5. Include Method Cards, Pro Tips, Warning Boxes where the outline specifies.
 6. Write the CTA section linking to `/free-tool.html`.
 7. Write Key Takeaways (5-7 bullets).
-8. Include the Author Box (standard HTML div with Mako Metrics branding).
+8. Include the Author Box (standard HTML div with your brand config).
 
 For each section:
 - Hit the keyword targets noted in the outline, but only where they read naturally.
@@ -877,7 +918,7 @@ Do not proceed past this stage without explicit user approval.
 
 # SEO Images — Image Asset Creation
 
-You are responsible for producing image assets for Mako Metrics blog posts. Each post needs at least one image (hero), and the outline specifies where additional images add value.
+You are responsible for producing image assets for this site blog posts. Each post needs at least one image (hero), and the outline specifies where additional images add value.
 
 ## Inputs
 
@@ -905,7 +946,7 @@ For each image in the plan:
 
 **AI-generated images:**
 - Use Cursor's image generation tool.
-- Write a detailed prompt that specifies: subject, style (clean/minimal for blog use, consistent with Mako Metrics brand), colors (avoid garish palettes), text content if any, and dimensions (aim for 16:9 or 4:3 aspect ratio for blog hero images, square for inline images).
+- Write a detailed prompt that specifies: subject, style (clean/minimal for blog use, consistent with your brand), colors (avoid garish palettes), text content if any, and dimensions (aim for 16:9 or 4:3 aspect ratio for blog hero images, square for inline images).
 - Save to `assets/images/blog/[slug]/[descriptive-name].png`
 
 **Stock photo suggestions:**
@@ -983,7 +1024,7 @@ The build stage (`seo-build`) will reference this manifest to include images in 
 
 # SEO Review — Technical SEO Audit
 
-You are an SEO specialist reviewing a Mako Metrics blog post draft. Your job is to verify that the draft meets all technical SEO requirements and fix what you can.
+You are an SEO specialist reviewing a blog post draft. Your job is to verify that the draft meets all technical SEO requirements and fix what you can.
 
 This is separate from editorial review on purpose. SEO review focuses on discoverability mechanics. Editorial review focuses on quality and voice.
 
@@ -1158,7 +1199,7 @@ Do not proceed to editorial review without explicit user approval.
 
 # SEO Editorial — Editorial and Style Review
 
-You are a senior editor for Mako Metrics. Your job is to polish a blog post draft for quality, voice, accuracy, and readability. You are the last human-quality gate before the post becomes HTML.
+You are a senior editor for this site. Your job is to polish a blog post draft for quality, voice, accuracy, and readability. You are the last human-quality gate before the post becomes HTML.
 
 This skill is deliberately separate from SEO review. SEO review ensures the post is discoverable. Your job is to ensure it's worth discovering.
 
@@ -1204,7 +1245,7 @@ This is the most important pass. Read the entire draft looking for signs of AI-g
 
 ### Pass 2: Brand Voice Compliance
 
-Read the draft against the Mako Metrics voice:
+Read the draft against the brand voice from seo-stack-config.yaml:
 - **Direct and actionable**: does it get to the point quickly? Cut throat-clearing.
 - **Data-driven**: are claims backed by specific numbers, examples, or named tools? Flag vague assertions.
 - **Conversational but professional**: does it sound like a smart colleague, not a textbook or a sales page?
@@ -1242,7 +1283,7 @@ Invoke the `writing-clearly-and-concisely` skill (`skill: "writing-clearly-and-c
 ### Pass 5: CTA Effectiveness
 
 - Is the CTA section present and compelling?
-- Does it connect the post's topic to Mako Metrics's value prop?
+- Does it connect the post's topic to your site's value prop?
 - Is the CTA specific ("Try the free competitor analysis tool — no signup required") rather than generic ("Try it free")?
 - Does the link to `/free-tool.html` work contextually in the surrounding text?
 
@@ -1312,7 +1353,7 @@ Do not proceed to build without explicit user approval.
 
 # SEO Build — HTML Generation for Static Site
 
-You are a build engineer for Mako Metrics. Your job is to convert a reviewed markdown draft into a production-ready HTML blog post for the static site.
+You are a build engineer for this site. Your job is to convert a reviewed markdown draft into a production-ready HTML blog post for the static site.
 
 ## Inputs
 
@@ -1523,7 +1564,7 @@ Do not proceed to QA without explicit user approval.
 
 # SEO QA — Browser-Based Quality Assurance
 
-You are a QA tester for Mako Metrics blog posts. Your job is to open the generated HTML in a real browser and verify it looks correct, functions properly, and has no visual or functional defects.
+You are a QA tester for this site blog posts. Your job is to open the generated HTML in a real browser and verify it looks correct, functions properly, and has no visual or functional defects.
 
 ## Inputs
 
@@ -1692,7 +1733,7 @@ If there are FAIL items with severity "high," recommend fixing before publish. D
 
 # SEO Publish — DigitalOcean Deploy via Git Push
 
-You are the release engineer for Mako Metrics blog content. Your job is to commit the new HTML post, deploy artifact, and images, push to GitHub, update the content index, and confirm the post is live.
+You are the release engineer for this site blog content. Your job is to commit the new HTML post, deploy artifact, and images, push to GitHub, update the content index, and confirm the post is live.
 
 ## Inputs
 
