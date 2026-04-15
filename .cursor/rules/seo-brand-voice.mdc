@@ -1,5 +1,5 @@
 ---
-description: Mako Metrics brand voice and writing standards. Activates when working in drafts/, blog/, research/, briefs/, or outlines/ directories.
+description: Brand voice and writing standards for this repo. Replace placeholder sections after clone. Activates when working in drafts/, blog/, research/, briefs/, or outlines/.
 globs:
   - drafts/**
   - blog/**
@@ -8,63 +8,61 @@ globs:
   - outlines/**
 ---
 
-# Mako Metrics Brand Voice
+# Brand voice (customize for your site)
 
-## Who We Are
+## Who we are
 
-Mako Metrics helps ecommerce marketers and paid media managers understand their advertising performance through competitive intelligence and benchmarking tools.
+Replace this section with one paragraph about your company or site. Pull details from `seo-stack-config.yaml` (`site.name`, `brand_voice`) so product marketing stays consistent with the pipeline.
 
-## Voice Attributes
+## Voice attributes
 
-**Direct**: get to the point. No filler paragraphs, no warming up to the topic. The first sentence should already be useful.
+**Direct**: get to the point. No filler paragraphs. The first sentence should already be useful.
 
-**Data-driven**: back claims with numbers. "CPL dropped 34% over 6 weeks" is better than "CPL improved significantly." If you don't have a specific number, say so honestly rather than using vague modifiers.
+**Evidence-based**: back claims with numbers or named sources. If you do not have a specific number, say so instead of vague intensifiers.
 
-**Conversational-professional**: write like you're explaining something to a smart colleague over coffee. Use contractions. Use first person. Don't write like a textbook, but don't write like a tweet thread either.
+**Conversational-professional**: write like you are explaining something to a smart colleague. Use contractions where natural. Prefer first person when it fits your brand.
 
-**Empathetic**: acknowledge the reader's pain points and constraints. They're busy, they're managing multiple platforms, and they've read a dozen generic guides already.
+**Empathetic**: acknowledge reader constraints (time, budget, political realities at work).
 
-**Opinionated**: take positions when warranted. "I think lookalike audiences are overrated for B2B on Meta — here's why" is better than "some marketers have found mixed results with lookalike audiences."
+**Opinionated when earned**: take a position when you can support it; distinguish opinion from fact.
 
-## Voice Attributes We Avoid
+## Voice attributes we avoid
 
-**Academic**: no passive voice defaults, no hedging every statement, no "it could be argued that."
+**Academic**: no passive defaults, no hedging every claim, no "it could be argued that."
 
-**Sales-y**: no "revolutionary," no "game-changing," no "unlock your potential." We sell by being useful, not by being loud.
+**Salesy**: no "revolutionary," "game-changing," or empty superlatives. Prefer usefulness over hype.
 
-**Generic AI**: no "in today's digital landscape," no "comprehensive guide," no "let's dive in." See the full banned patterns list in the seo-write skill.
+**Generic AI**: no "in today's digital landscape," "comprehensive guide," or "let's dive in." Follow the banned patterns list in `seo-write-full`.
 
 ## Audience
 
-Primary: mid-level paid media managers and marketing analysts at DTC/ecommerce brands ($1M-$50M revenue). They manage campaigns across Meta, Google, and possibly LinkedIn or TikTok. They report to a VP or CMO and need to justify spend.
+Primary reader: [replace — role, seniority, industry, what success looks like for them]
 
-Secondary: marketing ops and RevOps practitioners who build reporting infrastructure. More technical, interested in data modeling and attribution.
+Secondary reader: [replace — optional]
 
-## Tone Adjustments by Content Type
+## Tone by content type
 
-**How-to guides**: instructional but not condescending. Assume they know the platform basics. Focus on the non-obvious parts.
+**How-to**: instructional without talking down; focus on non-obervable steps.
 
-**Strategy posts**: more opinionated. Share a point of view. It's okay to disagree with common advice if you explain why.
+**Strategy**: clear point of view; show tradeoffs.
 
-**Data/benchmark posts**: let the numbers lead. Keep commentary tight. Readers are here for the data, not the prose.
+**Data posts**: numbers lead; keep interpretation tight.
 
-**Tool comparisons**: be fair but decisive. Compare honestly, then give a recommendation with reasoning.
+**Comparisons**: fair, specific, decisive recommendation when appropriate.
 
-## Formatting Standards
+## Formatting
 
-- Short paragraphs: 2-4 sentences max.
-- Use bullet lists for features, benefits, or options.
-- Use numbered lists for sequential steps.
-- Break long content with subheadings every 200-300 words.
-- Bold key terms on first use in a section — but don't over-bold.
-- One CTA per post linking to /free-tool.html, placed naturally in the flow.
-- Cite sources inline when claiming specific numbers, referencing studies, or attributing claims. Link to the source with natural anchor text — not bare URLs or "[source]" links.
-- If you can't find a credible source for a claim, frame it as opinion: "I've seen..." or "In my experience..."
+- Short paragraphs (often 2–4 sentences).
+- Bullets for lists of options; numbered lists for sequences.
+- Subheads every 200–300 words for long pieces.
+- Bold a term on first use in a section (sparingly).
+- One primary CTA per post: link to the path in `site.free_tool_url` inside `seo-stack-config.yaml`, placed naturally (adjust if a different landing page fits the post).
 
-## Words and Phrases
+## Words and phrases
 
-**Prefer**: use, build, set up, track, test, compare, check, run, pull, fix
-**Avoid**: leverage, utilize, unlock, elevate, supercharge, streamline, optimize (unless about actual optimization), empower
+**Prefer**: use, build, set up, track, test, compare, check, fix
+**Avoid**: leverage, utilize, unlock, elevate, supercharge (unless quoting)
 
-**Prefer**: "I think," "we've seen," "in my experience"
-**Avoid**: "it's widely known that," "experts agree," "studies show" (unless citing a specific study)
+---
+
+After you edit this file, keep `brand_voice` in `seo-stack-config.yaml` aligned (tone, audience, topics) so tools and skills stay in sync.

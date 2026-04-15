@@ -1,0 +1,20 @@
+---
+description: Reminds agents to finish template setup before running the SEO pipeline.
+globs:
+  - seo-stack-config.yaml
+  - .cursor/skills/seo-write-full.md
+  - research/**
+  - briefs/**
+  - outlines/**
+  - drafts/**
+---
+
+# SEO Content Stack — first-run gate
+
+Before producing research, drafts, or deployment steps for this repo:
+
+1. Read **`seo-stack-config.yaml`**. If you see placeholder values such as `YOUR_SITE_NAME`, `yourdomain.com`, `YOUR_TONE`, `YOUR_PROVIDER`, or `YOUR_AUTHOR_NAME`, **stop** and walk the user through **SETUP.md** at the repository root (or the setup wizard in `.cursor/skills/seo-write-full.md`). Do not invent a brand or domain.
+
+2. Ensure **`.cursor/rules/seo-brand-voice.mdc`** matches your real audience and tone, and **`AGENTS.md`** is filled in for positioning.
+
+3. After configuration is real (not placeholder), proceed with **`seo-write-full`** as the single pipeline source of truth.

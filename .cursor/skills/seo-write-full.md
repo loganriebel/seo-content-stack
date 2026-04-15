@@ -52,7 +52,7 @@ Then proceed to whatever pipeline stage the user originally requested.
 
 Read **all** of these at session start (or before the first stage you run):
 
-1. `AGENTS.md` — business, ICP, pricing, CTAs, competitive positioning
+1. `AGENTS.md` — business positioning, ICP, pricing, CTAs (fill the template on first clone)
 2. `seo-stack-config.yaml` — paths, deploy, content defaults, GTM, domain
 3. `content-index.json` — pillars, published posts, internal linking
 4. `.cursor/rules/seo-brand-voice.mdc` — voice, formatting, banned words at rule level
@@ -68,13 +68,13 @@ Use paths in `seo-stack-config.yaml` under `paths:` (defaults below if unchanged
 | 1 Research | `research/[topic-slug].md` |
 | 2 Brief | `briefs/[slug].md` |
 | 3 Outline | `outlines/[slug].md` |
-| 4 Write | `../seo/drafts/[slug].md` ← Python tools read from here |
-| 5 Images | `../images/blog/[slug].svg` (cover) + inline SVGs as needed |
-| 6 SEO Review | updates `../seo/drafts/[slug].md` |
-| 7 Editorial | updates `../seo/drafts/[slug].md` |
-| 8 Build | `../blog/[slug].html` + `../deploy/blog/[slug]/index.html` (via Python) |
+| 4 Write | `drafts/[slug].md` ← Python tools read from here |
+| 5 Images | `assets/images/blog/[slug].svg` (cover) + inline SVGs as needed |
+| 6 SEO Review | updates `drafts/[slug].md` |
+| 7 Editorial | updates `drafts/[slug].md` |
+| 8 Build | `blog/[slug].html` + `deploy/blog/[slug]/index.html` (via Python) |
 | 9 QA | `qa-reports/[slug].md` |
-| 10 Publish | `content-index.json` update + git push to master → DO auto-deploys |
+| 10 Publish | `content-index.json` update + git push (branch from `deploy.branch`) → host deploys |
 
 ## How to determine current stage (resume)
 
@@ -83,10 +83,10 @@ Use paths in `seo-stack-config.yaml` under `paths:` (defaults below if unchanged
 3. If the user gives a **slug**, check **reverse order**:
    - `content-index.json` has the slug with `status: "published"` → done; ask if refresh/republish.
    - `qa-reports/[slug].md` exists → **Stage 10 Publish** (after user approval).
-   - `../deploy/blog/[slug]/index.html` exists → **Stage 9 QA**.
-   - `../seo/drafts/[slug].md` with `editorial_reviewed: true` → **Stage 8 Build** (ensure Stage 5 Images is done if the outline required images—check `../images/blog/` for the cover SVG).
-   - `../seo/drafts/[slug].md` with `seo_reviewed: true` but not editorial → **Stage 7 Editorial**.
-   - `../seo/drafts/[slug].md` without `seo_reviewed: true` → If outline specified images and `../images/blog/[slug].svg` is missing → **Stage 5 Images**; else **Stage 6 SEO Review**.
+   - `deploy/blog/[slug]/index.html` exists → **Stage 9 QA**.
+   - `drafts/[slug].md` with `editorial_reviewed: true` → **Stage 8 Build** (ensure Stage 5 Images is done if the outline required images—check `assets/images/blog/` for the cover SVG).
+   - `drafts/[slug].md` with `seo_reviewed: true` but not editorial → **Stage 7 Editorial**.
+   - `drafts/[slug].md` without `seo_reviewed: true` → If outline specified images and `assets/images/blog/[slug].svg` is missing → **Stage 5 Images**; else **Stage 6 SEO Review**.
    - `outlines/[slug].md` exists → **Stage 4 Write**.
    - `briefs/[slug].md` exists → **Stage 3 Outline**.
    - `research/[…].md` exists matching topic → **Stage 2 Brief** (confirm research file slug vs final slug with the user if needed).
@@ -112,7 +112,7 @@ The project rule `.cursor/rules/seo-brand-voice.mdc` applies when editing drafts
 ## Critical rules
 
 1. **Human gates:** After each stage, summarize, ask for approval, then continue. Never auto-advance.
-2. **Follow stage instructions below** for the current stage (same rigor as the archived per-stage skills).
+2. **Follow stage instructions below** for the current stage (same rigor as a standalone per-stage pipeline).
 3. **Sources:** Statistics and claims need inline links; trace back to Stage 1 **Sources Collected** when possible.
 4. **`seo_tools/publish.py`:** Referenced in `seo-stack-config.yaml` but **may not exist** in the repo. If the file is missing, **skip** `python seo_tools/publish.py` and tell the user to update sitemap/blog listing manually.
 
@@ -124,7 +124,7 @@ Run **1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10** for a greenfiel
 
 ## Stage 1 — Research
 
-*Authoritative instructions for this stage. See `.cursor/skills/archive/seo-research.md` for the original file after archival.*
+*Stage instructions for Research follow below.*
 
 # SEO Research — Topic Discovery and Keyword Research
 
@@ -315,7 +315,7 @@ Do not proceed to the next stage without explicit user approval.
 
 ## Stage 2 — Brief
 
-*Authoritative instructions for this stage. See `.cursor/skills/archive/seo-brief.md` for the original file after archival.*
+*Stage instructions for Brief follow below.*
 
 # SEO Brief — Content Brief Generation
 
@@ -375,7 +375,7 @@ Check `content-index.json`:
 - **Target word count**: based on competition and topic depth (minimum from config, but adjust up for comprehensive guides).
 - **Content format**: guide, how-to, comparison, case study, listicle, or hybrid.
 - **Category**: from the allowed categories in config.
-- **CTA strategy**: what the call-to-action should be (typically `/free-tool.html` but may vary).
+- **CTA strategy**: what the call-to-action should be (align with `site.free_tool_url` in `seo-stack-config.yaml`, unless this post needs a different landing page).
 
 ## Content Brief Template
 
@@ -479,7 +479,7 @@ Do not proceed to the outline stage without explicit user approval.
 
 ## Stage 3 — Outline
 
-*Authoritative instructions for this stage. See `.cursor/skills/archive/seo-outline.md` for the original file after archival.*
+*Stage instructions for Outline follow below.*
 
 # SEO Outline — Detailed Content Structure
 
@@ -517,7 +517,7 @@ Apply the required content structure from `.cursor/rules/seo-brand-voice.mdc` an
 6. Pro Tips (yellow boxes for actionable tips)
 7. Warning Boxes (for caveats or limitations)
 8. Comparison Tables (where relevant)
-9. CTA linking to `/free-tool.html`
+9. CTA linking to `site.free_tool_url`
 10. Key Takeaways (bullet list, 5-7 points)
 11. Author Box
 
@@ -535,7 +535,7 @@ For each heading and section, note:
 From the brief's internal link targets and `content-index.json`:
 - Map each internal link to the specific section where it fits naturally.
 - Include the target slug and a note on how to introduce the link.
-- Plan the CTA link to `/free-tool.html` (required in every post).
+- Plan the CTA link to `site.free_tool_url` (required in every post).
 
 ### Step 5: Identify image needs
 
@@ -624,7 +624,7 @@ target_word_count: [number]
 ## CTA Section
 - **Placement**: [where in the flow]
 - **Message**: [what the CTA says]
-- **Link**: /free-tool.html
+- **Link**: [path from `site.free_tool_url` in `seo-stack-config.yaml`, e.g. `/pricing`]
 
 ## Key Takeaways
 [5-7 bullet points to include. Draft them here so the writer has a target.]
@@ -652,7 +652,7 @@ target_word_count: [number]
 | Target slug | Section to place in | Context for link |
 |------------|-------------------|-----------------|
 | [slug] | [H2 name] | [How to introduce it] |
-| /free-tool.html | CTA section | [Standard CTA] |
+| [your CTA path] | CTA section | [Standard CTA] |
 ```
 
 ## After Completion
@@ -670,7 +670,7 @@ Do not proceed to writing without explicit user approval.
 
 ## Stage 4 — Write
 
-*Authoritative instructions for this stage. See `.cursor/skills/archive/seo-write.md` for the original file after archival.*
+*Stage instructions for Write follow below.*
 
 # SEO Write — Draft Writing with Human Voice
 
@@ -849,7 +849,7 @@ Follow the outline section by section:
 3. Write the Table of Contents (HTML div with anchor links to each H2).
 4. Write each content section following the outline guidance.
 5. Include Method Cards, Pro Tips, Warning Boxes where the outline specifies.
-6. Write the CTA section linking to `/free-tool.html`.
+6. Write the CTA section linking to `site.free_tool_url`.
 7. Write Key Takeaways (5-7 bullets).
 8. Include the Author Box (standard HTML div with your brand config).
 
@@ -881,7 +881,7 @@ Check that the draft includes:
 - [ ] Secondary keywords distributed across H2s and body text
 - [ ] All planned internal links placed
 - [ ] Image placeholders where the outline specified
-- [ ] CTA section with link to `/free-tool.html`
+- [ ] CTA section with link to `site.free_tool_url`
 - [ ] Key Takeaways (5-7 points)
 - [ ] Quick Summary Box
 - [ ] Table of Contents
@@ -914,7 +914,7 @@ Do not proceed past this stage without explicit user approval.
 
 ## Stage 5 — Images
 
-*Authoritative instructions for this stage. See `.cursor/skills/archive/seo-images.md` for the original file after archival.*
+*Stage instructions for Images follow below.*
 
 # SEO Images — Image Asset Creation
 
@@ -1020,7 +1020,7 @@ The build stage (`seo-build`) will reference this manifest to include images in 
 
 ## Stage 6 — SEO Review
 
-*Authoritative instructions for this stage. See `.cursor/skills/archive/seo-review.md` for the original file after archival.*
+*Stage instructions for SEO Review follow below.*
 
 # SEO Review — Technical SEO Audit
 
@@ -1082,7 +1082,7 @@ Evaluate each criterion below. For each, record: PASS, FAIL, or WARN (technicall
 
 #### Internal Links
 - [ ] At least [target from config] internal links present
-- [ ] Link to `/free-tool.html` is present
+- [ ] Link to `site.free_tool_url` is present
 - [ ] All internal link targets exist in `content-index.json` or are known site pages
 - [ ] Links have descriptive anchor text (not "click here" or "read more")
 - [ ] Links are contextually relevant to the surrounding text
@@ -1195,7 +1195,7 @@ Do not proceed to editorial review without explicit user approval.
 
 ## Stage 7 — Editorial
 
-*Authoritative instructions for this stage. See `.cursor/skills/archive/seo-editorial.md` for the original file after archival.*
+*Stage instructions for Editorial follow below.*
 
 # SEO Editorial — Editorial and Style Review
 
@@ -1285,7 +1285,7 @@ Invoke the `writing-clearly-and-concisely` skill (`skill: "writing-clearly-and-c
 - Is the CTA section present and compelling?
 - Does it connect the post's topic to your site's value prop?
 - Is the CTA specific ("Try the free competitor analysis tool — no signup required") rather than generic ("Try it free")?
-- Does the link to `/free-tool.html` work contextually in the surrounding text?
+- Does the link to `site.free_tool_url` work contextually in the surrounding text?
 
 ## Output
 
@@ -1349,7 +1349,7 @@ Do not proceed to build without explicit user approval.
 
 ## Stage 8 — Build
 
-*Authoritative instructions for this stage. The website is static HTML — output is an HTML file in the blog directory.*
+*Stage instructions for Build follow. The website is static HTML — output is an HTML file under `blog/` (or paths from `seo-stack-config.yaml`).*
 
 # SEO Build — HTML Generation for Static Site
 
@@ -1357,39 +1357,38 @@ You are a build engineer for this site. Your job is to convert a reviewed markdo
 
 ## Inputs
 
-- Draft at `../seo/drafts/[slug].md` (must have `seo_reviewed: true` and `editorial_reviewed: true`)
-- Cover SVG at `../images/blog/[slug].svg` (must exist — create in Stage 5 if missing)
-- Any inline SVGs at `../images/blog/[slug]-*.svg`
+- Draft at `drafts/[slug].md` (must have `seo_reviewed: true` and `editorial_reviewed: true`)
+- Cover SVG at `assets/images/blog/[slug].svg` (must exist — create in Stage 5 if missing)
+- Any inline SVGs at `assets/images/blog/[slug]-*.svg`
 - `seo-stack-config.yaml` (for paths and site config)
-- `../seo/seo_tools/generate_html.py` + `../seo/seo_tools/publish.py` (Python build pipeline)
+- `seo_tools/generate_html.py` + `seo_tools/publish.py` (Python build pipeline)
 
 ## Process
 
 ### Step 1: Pre-flight checks
 
 Before building, verify:
-1. The draft at `../seo/drafts/[slug].md` has both `seo_reviewed: true` and `editorial_reviewed: true` in frontmatter. If not, stop and tell the user which review stage is missing.
+1. The draft at `drafts/[slug].md` has both `seo_reviewed: true` and `editorial_reviewed: true` in frontmatter. If not, stop and tell the user which review stage is missing.
 2. All required frontmatter fields are present: `title`, `description`, `date`, `slug`.
-3. The cover SVG exists at `../images/blog/[slug].svg`. If missing, complete Stage 5 first.
-4. The Python scripts exist: `../seo/seo_tools/generate_html.py` and `../seo/seo_tools/publish.py`.
+3. The cover SVG exists at `assets/images/blog/[slug].svg`. If missing, complete Stage 5 first.
+4. The Python scripts exist: `seo_tools/generate_html.py` and `seo_tools/publish.py`.
 
 ### Step 2: Run the Python build pipeline
 
-From the `.seo-stack/` directory, run:
+From your **site or monorepo root** (see `deploy.website_root` in `seo-stack-config.yaml`), run the scripts listed under `seo_tools` — often:
 
 ```bash
-cd ..
-python seo/seo_tools/generate_html.py [slug]
-python seo/seo_tools/publish.py [slug]
+python seo_tools/generate_html.py [slug]
+python seo_tools/publish.py [slug]
 ```
 
-`generate_html.py` produces:
-- `blog/[slug].html` — intermediate HTML
-- `deploy/blog/[slug]/index.html` — deploy artifact (pretty URL, served by DigitalOcean)
+If those files are not in your repo yet, skip this step and generate HTML by your site’s usual process; keep output paths aligned with `paths.html_output` and `paths.deploy_output`.
 
-`publish.py` updates:
-- `sitemap.xml` — adds the new post URL
-- `blog.html` — adds the new post card to the blog listing
+When present, `generate_html.py` typically produces:
+- `blog/[slug].html` — intermediate HTML
+- `deploy/blog/[slug]/index.html` — deploy artifact
+
+`publish.py` may update listing pages or `sitemap.xml` if your project includes those scripts.
 
 ### Step 3: Verify build output
 
@@ -1412,7 +1411,7 @@ image: "/images/blog/[slug].svg"
   <img src="/images/blog/[slug]-[name].svg" alt="[alt text]" className="my-8 w-full rounded-xl border border-gray-100" />
   ```
 - Keep `<div class="...">` as-is (plain HTML, not JSX)
-- Use existing blog HTML files in `../blog/` as style reference for callout boxes, TOC, and summary boxes
+- Use existing blog HTML files in `blog/` as style reference for callout boxes, TOC, and summary boxes
 - All markdown headings, links, blockquotes, and lists pass through unchanged
 - Internal links: use `/blog/[slug].html` path format
 - External links: keep as-is with full URLs
@@ -1426,7 +1425,7 @@ Read the generated HTML and verify:
 - [ ] `description` present and 150-160 characters
 - [ ] `date` in `YYYY-MM-DD` format
 - [ ] `slug` matches filename
-- [ ] `image` field points to an existing file in `../images/blog/`
+- [ ] `image` field points to an existing file in `assets/images/blog/`
 
 #### Content
 - [ ] All `[IMAGE: ...]` placeholders replaced with `<img>` tags
@@ -1560,7 +1559,7 @@ Do not proceed to QA without explicit user approval.
 
 ## Stage 9 — QA
 
-*Authoritative instructions for this stage. See `.cursor/skills/archive/seo-qa.md` for the original file after archival.*
+*Stage instructions for QA follow below.*
 
 # SEO QA — Browser-Based Quality Assurance
 
@@ -1639,7 +1638,7 @@ Using the browser snapshot, identify all links on the page:
 
 1. **Internal links:** click each one and verify it doesn't 404. Navigate back after each.
 2. **Anchor links (TOC):** click each Table of Contents link and verify it scrolls to the correct section.
-3. **CTA link:** verify `/free-tool.html` link is present and points to the right place.
+3. **CTA link:** verify `site.free_tool_url` link is present and points to the right place.
 4. **External links:** verify they open (or at least have valid-looking URLs).
 
 ### Step 5: Console error check
@@ -1729,19 +1728,19 @@ If there are FAIL items with severity "high," recommend fixing before publish. D
 
 ## Stage 10 — Publish
 
-*Authoritative instructions for this stage. Deploy = git push to master; DigitalOcean App Platform auto-deploys from deploy/.*
+*Stage instructions for Publish follow.*
 
-# SEO Publish — DigitalOcean Deploy via Git Push
+# SEO Publish — Git push and go-live
 
-You are the release engineer for this site blog content. Your job is to commit the new HTML post, deploy artifact, and images, push to GitHub, update the content index, and confirm the post is live.
+You are the release engineer for this site's blog content. Your job is to commit the new HTML post, deploy artifact, and images, push to your git remote, update the content index, and confirm the post is live. Adapt host-specific steps to whatever is in `seo-stack-config.yaml` (`deploy.*`).
 
 ## Inputs
 
 - QA report at `qa-reports/[slug].md` (must have status "pass" or "pass-with-notes")
-- HTML file at `../blog/[slug].html` (intermediate)
-- Deploy artifact at `../deploy/blog/[slug]/index.html` (served by DigitalOcean)
-- Cover SVG at `../images/blog/[slug].svg`
-- Any inline SVGs at `../images/blog/[slug]-*.svg`
+- HTML file at `blog/[slug].html` (intermediate)
+- Deploy artifact at `deploy/blog/[slug]/index.html` (or whatever path your host serves from)
+- Cover SVG at `assets/images/blog/[slug].svg`
+- Any inline SVGs at `assets/images/blog/[slug]-*.svg`
 - `content-index.json` (to update)
 
 ## Pre-Deploy Checks
@@ -1749,8 +1748,8 @@ You are the release engineer for this site blog content. Your job is to commit t
 Before deploying, verify:
 
 1. **QA report exists and status is not "fail."** If QA failed, stop and tell the user.
-2. **Deploy artifact exists** at `../deploy/blog/[slug]/index.html` (created by `publish.py` in Stage 8).
-3. **Cover SVG exists** at `../images/blog/[slug].svg`.
+2. **Deploy artifact exists** at `deploy/blog/[slug]/index.html` (created by `publish.py` in Stage 8).
+3. **Cover SVG exists** at `assets/images/blog/[slug].svg`.
 4. **User has given explicit approval** to publish. Ask if not already confirmed.
 
 ## Deploy Process
@@ -1759,7 +1758,7 @@ Before deploying, verify:
 
 Present a summary:
 - Post title and slug
-- Target URL: `https://makometrics.com/blog/[slug]` (pretty URL — no .html)
+- Target URL: `https://` + `site.domain` from `seo-stack-config.yaml` + `site.blog_base_url` + `[slug]` (adjust if your site uses trailing slashes or `.html` — match your real URL pattern)
 - QA status and any "pass-with-notes" items
 - Files that will be committed
 
@@ -1788,29 +1787,30 @@ Also add the slug to the pillar's `spoke_slugs` array. Save the file.
 
 ### Step 3: Commit and push to GitHub
 
-The commit happens from the **main META_Ads_Analyzer repo root** (not from inside `.seo-stack/`). The blog HTML, deploy artifact, images, sitemap, and blog listing all live in the main repo.
+Run git commands from the **repository root** (or from `deploy.website_root` in `seo-stack-config.yaml` if you embedded this stack inside a larger site repo). Stage outputs should match `paths.*` in the config.
 
 ```bash
-cd /path/to/META_Ads_Analyzer
+cd /path/to/your-site-or-this-repo
 git add blog/[slug].html
 git add deploy/blog/[slug]/
-git add images/blog/[slug]*.svg
-git add sitemap.xml
-git add blog.html
-git add seo/drafts/[slug].md
+git add "assets/images/blog/[slug]"*.svg
+git add drafts/[slug].md
+git add content-index.json
+# Optional: if your site keeps these in-repo, add them too:
+# git add sitemap.xml blog/index.html
 git commit -m "Blog: add [slug]"
-git push origin master
+git push origin [branch from deploy.branch]
 ```
 
-DigitalOcean App Platform auto-deploys from `deploy/` on push to master. Typically live within 1–2 minutes.
+If you use a host with Git-based deploys (Netlify, Vercel, DigitalOcean App Platform, etc.), the live URL usually updates within 1–2 minutes of the push.
 
 ### Step 4: Verify live page
 
 After the build completes (typically 1-2 minutes), verify:
 
-1. Navigate to `https://makometrics.com/blog/[slug]` — confirm 200 and correct title (pretty URL, no `.html`).
-2. Check blog listing at `https://makometrics.com/blog` — new post card should appear.
-3. Check sitemap at `https://makometrics.com/sitemap.xml` — new URL should be present.
+1. Open the live post URL using `site.domain` + `site.blog_base_url` + slug — confirm 200 and correct title.
+2. Check your blog index page — the new post should appear.
+3. If you maintain `sitemap.xml` in this repo, confirm the new URL is listed.
 
 If using the browser MCP, take a screenshot as final confirmation.
 
@@ -1861,13 +1861,13 @@ Remind the user:
 
 - **Start a new post about [topic]** → Stage 1.
 - **Resume [slug]** → run detection above; run that stage after confirmation.
-- **Pipeline status** → scan `research/`, `briefs/`, `outlines/`, `drafts/`, `../images/blog/`, `../blog/`, `qa-reports/`, `content-index.json`; table per slug.
+- **Pipeline status** → scan `research/`, `briefs/`, `outlines/`, `drafts/`, `assets/images/blog/`, `blog/`, `qa-reports/`, `content-index.json`; table per slug.
 - **Run stage N on [slug]** → jump to that stage if inputs exist.
 
-## Stage 4 / Stage 7 wording fixes (vs archived files)
+## Stage 4 / Stage 7 note on rules files
 
-In **Stage 4** and anywhere the archived `seo-write.md` text says `seo-writing.mdc`, use **`.cursor/rules/seo-brand-voice.mdc`** instead.
+In **Stage 4** (and editorial stages), if any older copy mentions `seo-writing.mdc`, use **`.cursor/rules/seo-brand-voice.mdc`** instead.
 
-## Deprecated split skills
+## Deprecated orchestrator skill
 
-Per-stage skills live in `.cursor/skills/archive/`. Use **`seo-write-full`** for the pipeline unless you need an archived file for reference.
+The small orchestrator skill `seo-content.md` only points agents to **`seo-write-full`**. Use **`seo-write-full`** as the single source of truth for the pipeline.
